@@ -28,7 +28,7 @@
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     
     self.scrollView.pagingEnabled = YES;
-    self.scrollView.bounces = NO;
+    self.scrollView.bounces  = NO;
     self.scrollView.delegate = self;
     
     [self.view insertSubview:self.scrollView belowSubview:self.tabBar];
@@ -42,7 +42,7 @@
     [self setViewControllers:viewControllers animated:NO];
 }
 
-- (void)setViewControllers:(NSArray *)viewControllers animated:(BOOL)_ {
+- (void)setViewControllers:(NSArray *)viewControllers animated:(BOOL)animated {
     self.backingViewControllers = viewControllers;
 }
 
@@ -69,7 +69,7 @@
         };
         self.tabBarButtons = tabBarButtons.copy;
         
-        [self.tabBarButtons enumerateObjectsUsingBlock:^(UIView *tabBarButton, NSUInteger idx, BOOL *stop) {
+        [self.tabBarButtons enumerateObjectsUsingBlock:^(UIView *tabBarButton, NSUInteger idx, BOOL *_) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:tabBarButton.subviews.firstObject.frame];
 
             imageView.image = self.backingViewControllers[idx].tabBarItem.selectedImage;
@@ -82,7 +82,7 @@
             [tabBarButton insertSubview:label atIndex:1];
         }];
         
-        [self.tabBarButtons enumerateObjectsUsingBlock:^(UIView *tabBarButton, NSUInteger idx, BOOL *stop) {
+        [self.tabBarButtons enumerateObjectsUsingBlock:^(UIView *tabBarButton, NSUInteger idx, BOOL *_) {
             if (idx == 0) {
                 tabBarButton.subviews[0].alpha = 1;
                 tabBarButton.subviews[2].alpha = 0;
