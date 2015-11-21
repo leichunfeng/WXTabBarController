@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24A8F3E11BFF5E8500B231C6 /* WXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A8F3E01BFF5E8500B231C6 /* WXTabBarController.m */; };
 		24D0FBCA1BFF5B2D00725DD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D0FBC91BFF5B2D00725DD0 /* main.m */; };
 		24D0FBCD1BFF5B2D00725DD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D0FBCC1BFF5B2D00725DD0 /* AppDelegate.m */; };
 		24D0FBD01BFF5B2D00725DD0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D0FBCF1BFF5B2D00725DD0 /* ViewController.m */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24A8F3DF1BFF5E8500B231C6 /* WXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTabBarController.h; sourceTree = "<group>"; };
+		24A8F3E01BFF5E8500B231C6 /* WXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXTabBarController.m; sourceTree = "<group>"; };
 		24D0FBC51BFF5B2D00725DD0 /* WXTabBarController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WXTabBarController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D0FBC91BFF5B2D00725DD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		24D0FBCB1BFF5B2D00725DD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -44,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24A8F3DE1BFF5E5000B231C6 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				24A8F3DF1BFF5E8500B231C6 /* WXTabBarController.h */,
+				24A8F3E01BFF5E8500B231C6 /* WXTabBarController.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		24D0FBBC1BFF5B2D00725DD0 = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +77,7 @@
 		24D0FBC71BFF5B2D00725DD0 /* WXTabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				24A8F3DE1BFF5E5000B231C6 /* Source */,
 				24D0FBCB1BFF5B2D00725DD0 /* AppDelegate.h */,
 				24D0FBCC1BFF5B2D00725DD0 /* AppDelegate.m */,
 				24D0FBCE1BFF5B2D00725DD0 /* ViewController.h */,
@@ -210,6 +223,7 @@
 			files = (
 				24D0FBD01BFF5B2D00725DD0 /* ViewController.m in Sources */,
 				24D0FBCD1BFF5B2D00725DD0 /* AppDelegate.m in Sources */,
+				24A8F3E11BFF5E8500B231C6 /* WXTabBarController.m in Sources */,
 				24D0FBCA1BFF5B2D00725DD0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

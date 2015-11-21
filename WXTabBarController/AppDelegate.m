@@ -7,6 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "WXTabBarController.h"
+#import "ViewController.h"
+
+#define WXWidth  CGRectGetWidth([UIScreen mainScreen].bounds)
+#define WXHeight CGRectGetHeight([UIScreen mainScreen].bounds)
+#define HexRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface AppDelegate ()
 
@@ -16,30 +22,54 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    WXTabBarController *tabBarController = [[WXTabBarController alloc] init];
+    
+    ViewController *mainframeViewController = [[ViewController alloc] init];
+    mainframeViewController.view.backgroundColor = [UIColor redColor];
+
+    UIImage *mainframeImage = [[UIImage imageNamed:@"tabbar_mainframe"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *mainframeHLImage = [[UIImage imageNamed:@"tabbar_mainframeHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    mainframeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"微信"
+                                                                       image:mainframeImage
+                                                               selectedImage:mainframeHLImage];
+
+    ViewController *contactsViewController = [[ViewController alloc] init];
+    contactsViewController.view.backgroundColor = [UIColor orangeColor];
+
+    UIImage *contactsImage = [[UIImage imageNamed:@"tabbar_contacts"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *contactsHLImage = [[UIImage imageNamed:@"tabbar_contactsHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    contactsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"通讯录"
+                                                                      image:contactsImage
+                                                              selectedImage:contactsHLImage];
+
+    ViewController *discoverViewController = [[ViewController alloc] init];
+    discoverViewController.view.backgroundColor = [UIColor yellowColor];
+
+    UIImage *discoverImage = [[UIImage imageNamed:@"tabbar_discover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *discoverHLImage = [[UIImage imageNamed:@"tabbar_discoverHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    discoverViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"发现"
+                                                                      image:discoverImage
+                                                              selectedImage:discoverHLImage];
+
+    ViewController *meViewController = [[ViewController alloc] init];
+    meViewController.view.backgroundColor = [UIColor greenColor];
+
+    UIImage *meImage = [[UIImage imageNamed:@"tabbar_contacts"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *meHLImage = [[UIImage imageNamed:@"tabbar_contactsHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    meViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我"
+                                                                image:meImage
+                                                        selectedImage:meHLImage];
+
+    tabBarController.viewControllers = @[ mainframeViewController, contactsViewController, discoverViewController, meViewController ];
+    tabBarController.tabBar.tintColor = HexRGB(0x1AB20A);
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:tabBarController];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
 @end
