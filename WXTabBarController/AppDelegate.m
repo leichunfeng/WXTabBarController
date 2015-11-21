@@ -48,7 +48,7 @@
             UIImage *mainframeHLImage = [[UIImage imageNamed:@"tabbar_mainframeHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             
             mainframeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"微信" image:mainframeImage selectedImage:mainframeHLImage];
-            mainframeViewController.view.backgroundColor = [UIColor redColor];
+            mainframeViewController.view.backgroundColor = [UIColor colorWithRed:48 / 255.0 green:67 / 255.0 blue:78 / 255.0 alpha:1];
             
             mainframeViewController;
         });
@@ -60,7 +60,7 @@
             UIImage *contactsHLImage = [[UIImage imageNamed:@"tabbar_contactsHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             
             contactsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"通讯录" image:contactsImage selectedImage:contactsHLImage];
-            contactsViewController.view.backgroundColor = [UIColor orangeColor];
+            contactsViewController.view.backgroundColor = [UIColor colorWithRed:115 / 255.0 green:155 / 255.0 blue:6 / 255.0 alpha:1];
             
             contactsViewController;
         });
@@ -72,7 +72,7 @@
             UIImage *discoverHLImage = [[UIImage imageNamed:@"tabbar_discoverHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             
             discoverViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"发现" image:discoverImage selectedImage:discoverHLImage];
-            discoverViewController.view.backgroundColor = [UIColor yellowColor];
+            discoverViewController.view.backgroundColor = [UIColor colorWithRed:32 / 255.0 green:85 / 255.0 blue:128 / 255.0 alpha:1];
             
             discoverViewController;
         });
@@ -84,7 +84,7 @@
             UIImage *meHLImage = [[UIImage imageNamed:@"tabbar_contactsHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             
             meViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我" image:meImage selectedImage:meHLImage];
-            meViewController.view.backgroundColor = [UIColor greenColor];
+            meViewController.view.backgroundColor = [UIColor colorWithRed:199 / 255.0 green:135 / 255.0 blue:56 / 255.0 alpha:1];
             
             meViewController;
         });
@@ -107,7 +107,7 @@
     ViewController *viewController = [[ViewController alloc] init];
     
     viewController.title = @"添加";
-    viewController.view.backgroundColor = [UIColor purpleColor];
+    viewController.view.backgroundColor = [UIColor colorWithRed:26 / 255.0 green:178 / 255.0 blue:10 / 255.0 alpha:1];
     
     [self.navigationController pushViewController:viewController animated:YES];
 }
