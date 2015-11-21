@@ -12,7 +12,6 @@
 		24D0FBCD1BFF5B2D00725DD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D0FBCC1BFF5B2D00725DD0 /* AppDelegate.m */; };
 		24D0FBD01BFF5B2D00725DD0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D0FBCF1BFF5B2D00725DD0 /* ViewController.m */; };
 		24D0FBD51BFF5B2D00725DD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24D0FBD41BFF5B2D00725DD0 /* Assets.xcassets */; };
-		24D0FBD81BFF5B2D00725DD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D0FBD61BFF5B2D00725DD0 /* LaunchScreen.storyboard */; };
 		35A86F8D577B4AFA51175138 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E62F8D2D5FECE10467519C90 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +25,6 @@
 		24D0FBCE1BFF5B2D00725DD0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		24D0FBCF1BFF5B2D00725DD0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		24D0FBD41BFF5B2D00725DD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		24D0FBD71BFF5B2D00725DD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24D0FBD91BFF5B2D00725DD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E3E21B66D599C114B3F5C8A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		566A20BAB788784CB27EDEB1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 				24D0FBCE1BFF5B2D00725DD0 /* ViewController.h */,
 				24D0FBCF1BFF5B2D00725DD0 /* ViewController.m */,
 				24D0FBD41BFF5B2D00725DD0 /* Assets.xcassets */,
-				24D0FBD61BFF5B2D00725DD0 /* LaunchScreen.storyboard */,
 				24D0FBD91BFF5B2D00725DD0 /* Info.plist */,
 				24D0FBC81BFF5B2D00725DD0 /* Supporting Files */,
 			);
@@ -172,7 +169,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24D0FBD81BFF5B2D00725DD0 /* LaunchScreen.storyboard in Resources */,
 				24D0FBD51BFF5B2D00725DD0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,17 +221,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		24D0FBD61BFF5B2D00725DD0 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				24D0FBD71BFF5B2D00725DD0 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		24D0FBDA1BFF5B2D00725DD0 /* Debug */ = {
@@ -323,7 +308,9 @@
 			baseConfigurationReference = 4E3E21B66D599C114B3F5C8A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = WXTabBarController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.WXTabBarController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -335,7 +322,9 @@
 			baseConfigurationReference = 566A20BAB788784CB27EDEB1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = WXTabBarController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.WXTabBarController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
