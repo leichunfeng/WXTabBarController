@@ -56,19 +56,24 @@
     self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame) * backingViewControllers.count, CGRectGetHeight(self.view.frame));
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+- (NSArray *)tabBarButtons {
+    if (_tabBarButtons == nil) {
         NSMutableArray *tabBarButtons = [[NSMutableArray alloc] init];
         for (UIView *subview in self.tabBar.subviews) {
             if ([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
                 [tabBarButtons addObject:subview];
             }
         };
-        self.tabBarButtons = tabBarButtons.copy;
-        
+        _tabBarButtons = tabBarButtons.copy;
+    }
+    return _tabBarButtons;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         [self.tabBarButtons enumerateObjectsUsingBlock:^(UIView *tabBarButton, NSUInteger idx, BOOL *_) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:tabBarButton.subviews.firstObject.frame];
 
