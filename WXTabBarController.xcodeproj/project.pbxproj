@@ -18,7 +18,7 @@
 /* Begin PBXFileReference section */
 		24A8F3DF1BFF5E8500B231C6 /* WXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTabBarController.h; sourceTree = "<group>"; };
 		24A8F3E01BFF5E8500B231C6 /* WXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXTabBarController.m; sourceTree = "<group>"; };
-		24D0FBC51BFF5B2D00725DD0 /* WXTabBarController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WXTabBarController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24D0FBC51BFF5B2D00725DD0 /* 微信.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "微信.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D0FBC91BFF5B2D00725DD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		24D0FBCB1BFF5B2D00725DD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		24D0FBCC1BFF5B2D00725DD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		24D0FBC61BFF5B2D00725DD0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				24D0FBC51BFF5B2D00725DD0 /* WXTabBarController.app */,
+				24D0FBC51BFF5B2D00725DD0 /* 微信.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,7 +129,7 @@
 			);
 			name = WXTabBarController;
 			productName = WXTabBarController;
-			productReference = 24D0FBC51BFF5B2D00725DD0 /* WXTabBarController.app */;
+			productReference = 24D0FBC51BFF5B2D00725DD0 /* 微信.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -313,7 +313,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.WXTabBarController;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "微信";
 			};
 			name = Debug;
 		};
@@ -327,7 +327,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.WXTabBarController;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "微信";
 			};
 			name = Release;
 		};
