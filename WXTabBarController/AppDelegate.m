@@ -10,19 +10,11 @@
 #import "WXTabBarController.h"
 #import "ViewController.h"
 
-#define WXWidth  CGRectGetWidth([UIScreen mainScreen].bounds)
-#define WXHeight CGRectGetHeight([UIScreen mainScreen].bounds)
-#define HexRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-
-@interface AppDelegate ()
-
-@end
-
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     WXTabBarController *tabBarController = [[WXTabBarController alloc] init];
+    tabBarController.title = @"微信";
     
     ViewController *mainframeViewController = [[ViewController alloc] init];
     mainframeViewController.view.backgroundColor = [UIColor redColor];
@@ -61,7 +53,7 @@
                                                         selectedImage:meHLImage];
 
     tabBarController.viewControllers = @[ mainframeViewController, contactsViewController, discoverViewController, meViewController ];
-    tabBarController.tabBar.tintColor = HexRGB(0x1AB20A);
+    tabBarController.tabBar.tintColor = [UIColor colorWithRed:26 / 255.0 green:178 / 255.0 blue:10 / 255.0 alpha:1];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:tabBarController];
     
