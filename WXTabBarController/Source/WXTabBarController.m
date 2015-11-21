@@ -76,13 +76,12 @@
     dispatch_once(&onceToken, ^{
         [self.tabBarButtons enumerateObjectsUsingBlock:^(UIView *tabBarButton, NSUInteger idx, BOOL *_) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:tabBarButton.subviews.firstObject.frame];
-
             imageView.image = self.backingViewControllers[idx].tabBarItem.selectedImage;
             [tabBarButton insertSubview:imageView atIndex:0];
 
             UILabel *label = [[UILabel alloc] initWithFrame:tabBarButton.subviews.lastObject.frame];
             label.textColor = self.tabBar.tintColor;
-            label.font = [UIFont systemFontOfSize:10];
+            label.font = [tabBarButton.subviews.lastObject font];
             label.text = self.backingViewControllers[idx].tabBarItem.title;
             [tabBarButton insertSubview:label atIndex:1];
         }];
