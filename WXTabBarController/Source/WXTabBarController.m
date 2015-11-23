@@ -54,83 +54,41 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self.tabBarButtons enumerateObjectsUsingBlock:^(UIView *tabBarButton, NSUInteger idx, BOOL *_) {
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:tabBarButton.subviews.firstObject.frame];
+            UIImageView *tabBarImageView = tabBarButton.subviews[0];
+
+            UIImageView *imageView = [[UIImageView alloc] init];
             imageView.image = self.backingViewControllers[idx].tabBarItem.selectedImage;
             [tabBarButton insertSubview:imageView atIndex:0];
             
             imageView.translatesAutoresizingMaskIntoConstraints = NO;
+
+            [tabBarButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[tabBarImageView]-width-[imageView(==tabBarImageView)]"
+                                                                                 options:0
+                                                                                 metrics:@{ @"width": @(-CGRectGetWidth(tabBarImageView.frame)) }
+                                                                                   views:NSDictionaryOfVariableBindings(tabBarImageView, imageView)]];
+            [tabBarButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[tabBarImageView]-height-[imageView(==tabBarImageView)]"
+                                                                                 options:0
+                                                                                 metrics:@{ @"height": @(-CGRectGetHeight(tabBarImageView.frame)) }
+                                                                                   views:NSDictionaryOfVariableBindings(tabBarImageView, imageView)]];
             
-            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:imageView
-                                                                     attribute:NSLayoutAttributeTop
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:tabBarButton.subviews[1]
-                                                                     attribute:NSLayoutAttributeTop
-                                                                    multiplier:1
-                                                                      constant:0]];
+            UILabel *tabBarLabel = tabBarButton.subviews.lastObject;
             
-            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:imageView
-                                                                     attribute:NSLayoutAttributeLeft
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:tabBarButton.subviews[1]
-                                                                     attribute:NSLayoutAttributeLeft
-                                                                    multiplier:1
-                                                                      constant:0]];
-            
-            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:imageView
-                                                                     attribute:NSLayoutAttributeBottom
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:tabBarButton.subviews[1]
-                                                                     attribute:NSLayoutAttributeBottom
-                                                                    multiplier:1
-                                                                      constant:0]];
-            
-            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:imageView
-                                                                     attribute:NSLayoutAttributeRight
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:tabBarButton.subviews[1]
-                                                                     attribute:NSLayoutAttributeRight
-                                                                    multiplier:1
-                                                                      constant:0]];
-            
-            UILabel *label = [[UILabel alloc] initWithFrame:tabBarButton.subviews.lastObject.frame];
+            UILabel *label = [[UILabel alloc] initWithFrame:tabBarLabel.frame];
             label.textColor = self.tabBar.tintColor;
-            label.font = [(UILabel *)tabBarButton.subviews.lastObject font];
+            label.font = tabBarLabel.font;
             label.text = self.backingViewControllers[idx].tabBarItem.title;
             [tabBarButton insertSubview:label atIndex:1];
             
             label.translatesAutoresizingMaskIntoConstraints = NO;
-            
-            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:label
-                                                                     attribute:NSLayoutAttributeTop
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:tabBarButton.subviews[3]
-                                                                     attribute:NSLayoutAttributeTop
-                                                                    multiplier:1
-                                                                      constant:0]];
-            
-            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:label
-                                                                     attribute:NSLayoutAttributeLeft
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:tabBarButton.subviews[3]
-                                                                     attribute:NSLayoutAttributeLeft
-                                                                    multiplier:1
-                                                                      constant:0]];
-            
-            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:label
-                                                                     attribute:NSLayoutAttributeBottom
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:tabBarButton.subviews[3]
-                                                                     attribute:NSLayoutAttributeBottom
-                                                                    multiplier:1
-                                                                      constant:0]];
-            
-            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:label
-                                                                     attribute:NSLayoutAttributeRight
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:tabBarButton.subviews[3]
-                                                                     attribute:NSLayoutAttributeRight
-                                                                    multiplier:1
-                                                                      constant:0]];
+
+            [tabBarButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[tabBarLabel]-width-[label(==tabBarLabel)]"
+                                                                                 options:0
+                                                                                 metrics:@{ @"width": @(-CGRectGetWidth(tabBarLabel.frame)) }
+                                                                                   views:NSDictionaryOfVariableBindings(tabBarLabel, label)]];
+            [tabBarButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[tabBarLabel]-height-[label(==tabBarLabel)]"
+                                                                                 options:0
+                                                                                 metrics:@{ @"height": @(-CGRectGetHeight(tabBarLabel.frame)) }
+                                                                                   views:NSDictionaryOfVariableBindings(tabBarLabel, label)]];
         }];
         
         self.selectedIndex = 0;
