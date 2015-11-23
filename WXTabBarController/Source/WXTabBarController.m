@@ -36,6 +36,18 @@
     [self.view insertSubview:self.scrollView belowSubview:self.tabBar];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    self.scrollView.delegate = nil;
+    self.scrollView.frame = CGRectMake(0, 0, size.width, size.height);
+    self.scrollView.contentOffset = CGPointMake(size.width * self.backingSelectedIndex, 0);
+    self.scrollView.contentSize = CGSizeMake(size.width * self.backingViewControllers.count, size.height);
+    self.scrollView.delegate = self;
+    
+    [self.backingViewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *_) {
+        viewController.view.frame = CGRectMake(size.width * idx, 0, size.width, size.height);
+    }];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
@@ -46,11 +58,79 @@
             imageView.image = self.backingViewControllers[idx].tabBarItem.selectedImage;
             [tabBarButton insertSubview:imageView atIndex:0];
             
+            imageView.translatesAutoresizingMaskIntoConstraints = NO;
+            
+            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:imageView
+                                                                     attribute:NSLayoutAttributeTop
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:tabBarButton.subviews[1]
+                                                                     attribute:NSLayoutAttributeTop
+                                                                    multiplier:1
+                                                                      constant:0]];
+            
+            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:imageView
+                                                                     attribute:NSLayoutAttributeLeft
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:tabBarButton.subviews[1]
+                                                                     attribute:NSLayoutAttributeLeft
+                                                                    multiplier:1
+                                                                      constant:0]];
+            
+            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:imageView
+                                                                     attribute:NSLayoutAttributeBottom
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:tabBarButton.subviews[1]
+                                                                     attribute:NSLayoutAttributeBottom
+                                                                    multiplier:1
+                                                                      constant:0]];
+            
+            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:imageView
+                                                                     attribute:NSLayoutAttributeRight
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:tabBarButton.subviews[1]
+                                                                     attribute:NSLayoutAttributeRight
+                                                                    multiplier:1
+                                                                      constant:0]];
+            
             UILabel *label = [[UILabel alloc] initWithFrame:tabBarButton.subviews.lastObject.frame];
             label.textColor = self.tabBar.tintColor;
             label.font = [(UILabel *)tabBarButton.subviews.lastObject font];
             label.text = self.backingViewControllers[idx].tabBarItem.title;
             [tabBarButton insertSubview:label atIndex:1];
+            
+            label.translatesAutoresizingMaskIntoConstraints = NO;
+            
+            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:label
+                                                                     attribute:NSLayoutAttributeTop
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:tabBarButton.subviews[3]
+                                                                     attribute:NSLayoutAttributeTop
+                                                                    multiplier:1
+                                                                      constant:0]];
+            
+            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:label
+                                                                     attribute:NSLayoutAttributeLeft
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:tabBarButton.subviews[3]
+                                                                     attribute:NSLayoutAttributeLeft
+                                                                    multiplier:1
+                                                                      constant:0]];
+            
+            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:label
+                                                                     attribute:NSLayoutAttributeBottom
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:tabBarButton.subviews[3]
+                                                                     attribute:NSLayoutAttributeBottom
+                                                                    multiplier:1
+                                                                      constant:0]];
+            
+            [tabBarButton addConstraint:[NSLayoutConstraint constraintWithItem:label
+                                                                     attribute:NSLayoutAttributeRight
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:tabBarButton.subviews[3]
+                                                                     attribute:NSLayoutAttributeRight
+                                                                    multiplier:1
+                                                                      constant:0]];
         }];
         
         self.selectedIndex = 0;
@@ -127,6 +207,10 @@
             [self tabBarButton:tabBarButton highlighted:NO deltaAlpha:deltaAlpha];
         }
     }];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    _backingSelectedIndex = scrollView.contentOffset.x / CGRectGetWidth(self.view.frame);
 }
 
 #pragma mark - UITabBarControllerDelegate
