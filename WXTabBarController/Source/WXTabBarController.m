@@ -159,7 +159,10 @@
     _backingSelectedIndex = selectedIndex;
     
     CGRect rectToVisible = CGRectMake(CGRectGetWidth(self.view.frame) * selectedIndex, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
+   
+    self.scrollView.delegate = nil;
     [self.scrollView scrollRectToVisible:rectToVisible animated:NO];
+    self.scrollView.delegate = self;
     
     [self.tabBarButtons enumerateObjectsUsingBlock:^(UIView *tabBarButton, NSUInteger idx, BOOL *_) {
         [self tabBarButton:tabBarButton highlighted:(idx == selectedIndex) deltaAlpha:0];
@@ -194,10 +197,8 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGPoint contentOffset = scrollView.contentOffset;
-    
-    NSUInteger index = contentOffset.x / CGRectGetWidth(self.view.frame);
-    CGFloat mod = fmod(contentOffset.x, CGRectGetWidth(self.view.frame));
+    NSUInteger index = scrollView.contentOffset.x / CGRectGetWidth(self.view.frame);
+    CGFloat mod = fmod(scrollView.contentOffset.x, CGRectGetWidth(self.view.frame));
     CGFloat deltaAlpha = mod * (1.0 / CGRectGetWidth(self.view.frame));
 
     [self.tabBarButtons enumerateObjectsUsingBlock:^(UIView *tabBarButton, NSUInteger idx, BOOL *_) {
