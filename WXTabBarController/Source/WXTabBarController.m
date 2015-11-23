@@ -73,7 +73,7 @@
             
             UILabel *tabBarLabel = tabBarButton.subviews.lastObject;
             
-            UILabel *label = [[UILabel alloc] initWithFrame:tabBarLabel.frame];
+            UILabel *label = [[UILabel alloc] init];
             label.textColor = self.tabBar.tintColor;
             label.font = tabBarLabel.font;
             label.text = self.backingViewControllers[idx].tabBarItem.title;
