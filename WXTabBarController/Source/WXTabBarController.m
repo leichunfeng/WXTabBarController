@@ -119,8 +119,16 @@
     self.backingViewControllers = viewControllers;
 }
 
+- (UIViewController *)selectedViewController {
+    return self.backingViewControllers[self.backingSelectedIndex];
+}
+
 - (void)setSelectedViewController:(UIViewController *)selectedViewController {
     self.selectedIndex = [self.backingViewControllers indexOfObject:selectedViewController];
+}
+
+- (NSUInteger)selectedIndex {
+    return self.backingSelectedIndex;
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
@@ -187,6 +195,10 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     self.selectedViewController = viewController;
     return NO;
+}
+
+- (UIInterfaceOrientationMask)tabBarControllerSupportedInterfaceOrientations:(UITabBarController *)tabBarController {
+    return tabBarController.selectedViewController.supportedInterfaceOrientations;
 }
 
 #pragma mark - Private methods
