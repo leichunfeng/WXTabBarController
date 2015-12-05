@@ -8,4 +8,5 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => 'https://github.com/leichunfeng/WXTabBarController.git', :tag => 'v0.1' }
   spec.source_files = 'WXTabBarController/Source/*.{h,m}'
   spec.requires_arc = true
+  spec.platform     = :ios, '8.0'
 end
