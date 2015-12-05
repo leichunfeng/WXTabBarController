@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, copy) NSArray *tabBarButtons;
+@property (nonatomic, assign) BOOL initialized;
 
 @end
 
@@ -44,17 +45,16 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    if (!self.initialized) {
         [self.tabBarButtons enumerateObjectsUsingBlock:^(UIView *tabBarButton, NSUInteger idx, BOOL *stop) {
             UIImageView *tabBarImageView = tabBarButton.subviews[0];
-
+            
             UIImageView *imageView = [[UIImageView alloc] init];
             imageView.image = self.backingViewControllers[idx].tabBarItem.selectedImage;
             [tabBarButton insertSubview:imageView atIndex:0];
             
             imageView.translatesAutoresizingMaskIntoConstraints = NO;
-
+            
             [tabBarButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[tabBarImageView]-width-[imageView(==tabBarImageView)]"
                                                                                  options:0
                                                                                  metrics:@{ @"width": @(-CGRectGetWidth(tabBarImageView.frame)) }
@@ -73,7 +73,7 @@
             [tabBarButton insertSubview:label atIndex:1];
             
             label.translatesAutoresizingMaskIntoConstraints = NO;
-
+            
             [tabBarButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[tabBarLabel]-width-[label(==tabBarLabel)]"
                                                                                  options:0
                                                                                  metrics:@{ @"width": @(-CGRectGetWidth(tabBarLabel.frame)) }
@@ -85,7 +85,8 @@
         }];
         
         self.selectedIndex = 0;
-    });
+        self.initialized = YES;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
