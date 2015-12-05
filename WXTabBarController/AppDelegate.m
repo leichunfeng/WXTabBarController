@@ -107,11 +107,6 @@
             [[UINavigationController alloc] initWithRootViewController:meViewController],
         ];
         
-        tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"barbuttonicon_add"]
-                                                                                              style:UIBarButtonItemStylePlain
-                                                                                             target:self
-                                                                                             action:@selector(didClickAddButton:)];
-        
         _tabBarController = tabBarController;
     }
     return _tabBarController;
