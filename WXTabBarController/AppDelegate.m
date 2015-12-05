@@ -47,8 +47,13 @@
             UIImage *mainframeImage   = [[UIImage imageNamed:@"tabbar_mainframe"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             UIImage *mainframeHLImage = [[UIImage imageNamed:@"tabbar_mainframeHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             
+            mainframeViewController.title = @"微信";
             mainframeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"微信" image:mainframeImage selectedImage:mainframeHLImage];
             mainframeViewController.view.backgroundColor = [UIColor colorWithRed:48 / 255.0 green:67 / 255.0 blue:78 / 255.0 alpha:1];
+            mainframeViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"barbuttonicon_add"]
+                                                                                                         style:UIBarButtonItemStylePlain
+                                                                                                        target:self
+                                                                                                        action:@selector(didClickAddButton:)];
             
             mainframeViewController;
         });
@@ -59,6 +64,7 @@
             UIImage *contactsImage   = [[UIImage imageNamed:@"tabbar_contacts"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             UIImage *contactsHLImage = [[UIImage imageNamed:@"tabbar_contactsHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             
+            contactsViewController.title = @"通讯录";
             contactsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"通讯录" image:contactsImage selectedImage:contactsHLImage];
             contactsViewController.view.backgroundColor = [UIColor colorWithRed:115 / 255.0 green:155 / 255.0 blue:6 / 255.0 alpha:1];
             
@@ -71,6 +77,7 @@
             UIImage *discoverImage   = [[UIImage imageNamed:@"tabbar_discover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             UIImage *discoverHLImage = [[UIImage imageNamed:@"tabbar_discoverHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             
+            discoverViewController.title = @"发现";
             discoverViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"发现" image:discoverImage selectedImage:discoverHLImage];
             discoverViewController.view.backgroundColor = [UIColor colorWithRed:32 / 255.0 green:85 / 255.0 blue:128 / 255.0 alpha:1];
             
@@ -83,6 +90,7 @@
             UIImage *meImage   = [[UIImage imageNamed:@"tabbar_contacts"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             UIImage *meHLImage = [[UIImage imageNamed:@"tabbar_contactsHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             
+            meViewController.title = @"我";
             meViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我" image:meImage selectedImage:meHLImage];
             meViewController.view.backgroundColor = [UIColor colorWithRed:199 / 255.0 green:135 / 255.0 blue:56 / 255.0 alpha:1];
             
@@ -90,9 +98,15 @@
         });
         
         tabBarController.title = @"微信";
-        tabBarController.viewControllers = @[ mainframeViewController, contactsViewController, discoverViewController, meViewController ];
         tabBarController.tabBar.tintColor = [UIColor colorWithRed:26 / 255.0 green:178 / 255.0 blue:10 / 255.0 alpha:1];
 
+        tabBarController.viewControllers = @[
+            [[UINavigationController alloc] initWithRootViewController:mainframeViewController],
+            [[UINavigationController alloc] initWithRootViewController:contactsViewController],
+            [[UINavigationController alloc] initWithRootViewController:discoverViewController],
+            [[UINavigationController alloc] initWithRootViewController:meViewController],
+        ];
+        
         tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"barbuttonicon_add"]
                                                                                               style:UIBarButtonItemStylePlain
                                                                                              target:self
