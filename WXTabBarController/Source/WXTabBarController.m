@@ -149,7 +149,7 @@
 - (void)setBackingViewControllers:(NSArray *)backingViewControllers {
     _backingViewControllers = backingViewControllers;
    
-    [backingViewControllers enumerateObjectsUsingBlock:^(UINavigationController *viewController, NSUInteger idx, BOOL *stop) {
+    [backingViewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop) {
         [self addChildViewController:viewController];
         viewController.view.frame = CGRectMake(CGRectGetWidth(self.view.frame) * idx, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
         [self.scrollView addSubview:viewController.view];
