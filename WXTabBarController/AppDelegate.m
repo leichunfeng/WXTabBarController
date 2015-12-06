@@ -44,8 +44,8 @@
         ViewController *mainframeViewController = ({
             ViewController *mainframeViewController = [[ViewController alloc] init];
             
-            UIImage *mainframeImage   = [[UIImage imageNamed:@"tabbar_mainframe"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            UIImage *mainframeHLImage = [[UIImage imageNamed:@"tabbar_mainframeHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            UIImage *mainframeImage   = [UIImage imageNamed:@"tabbar_mainframe"];
+            UIImage *mainframeHLImage = [UIImage imageNamed:@"tabbar_mainframeHL"];
             
             mainframeViewController.title = @"微信";
             mainframeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"微信" image:mainframeImage selectedImage:mainframeHLImage];
@@ -61,8 +61,8 @@
         ViewController *contactsViewController = ({
             ViewController *contactsViewController = [[ViewController alloc] init];
             
-            UIImage *contactsImage   = [[UIImage imageNamed:@"tabbar_contacts"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            UIImage *contactsHLImage = [[UIImage imageNamed:@"tabbar_contactsHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            UIImage *contactsImage   = [UIImage imageNamed:@"tabbar_contacts"];
+            UIImage *contactsHLImage = [UIImage imageNamed:@"tabbar_contactsHL"];
             
             contactsViewController.title = @"通讯录";
             contactsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"通讯录" image:contactsImage selectedImage:contactsHLImage];
@@ -74,8 +74,8 @@
         ViewController *discoverViewController = ({
             ViewController *discoverViewController = [[ViewController alloc] init];
             
-            UIImage *discoverImage   = [[UIImage imageNamed:@"tabbar_discover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            UIImage *discoverHLImage = [[UIImage imageNamed:@"tabbar_discoverHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            UIImage *discoverImage   = [UIImage imageNamed:@"tabbar_discover"];
+            UIImage *discoverHLImage = [UIImage imageNamed:@"tabbar_discoverHL"];
             
             discoverViewController.title = @"发现";
             discoverViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"发现" image:discoverImage selectedImage:discoverHLImage];
@@ -87,8 +87,8 @@
         ViewController *meViewController = ({
             ViewController *meViewController = [[ViewController alloc] init];
             
-            UIImage *meImage   = [[UIImage imageNamed:@"tabbar_contacts"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            UIImage *meHLImage = [[UIImage imageNamed:@"tabbar_contactsHL"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            UIImage *meImage   = [UIImage imageNamed:@"tabbar_me"];
+            UIImage *meHLImage = [UIImage imageNamed:@"tabbar_meHL"];
             
             meViewController.title = @"我";
             meViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我" image:meImage selectedImage:meHLImage];
