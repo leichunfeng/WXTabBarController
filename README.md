@@ -128,7 +128,7 @@ pod 'WXTabBarController', '~> 0.1'
 
 为了更直观地理解这个约定，我们一起来看一下整个应用的导航层次结构图：
 
-![WXTabBarController](OmniGraffle/WXTabBarController.pdf "WXTabBarController")
+![WXTabBarController](OmniGraffle/WXTabBarController.png "WXTabBarController")
 
 # Application
 
