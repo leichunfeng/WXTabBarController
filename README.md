@@ -142,6 +142,8 @@ pod 'WXTabBarController', '~> 0.1'
 
 ``` objc
 git clone https://github.com/your-username/WXTabBarController.git
+cd WXTabBarController
+pod install --no-repo-update
 ```
 
 # License
