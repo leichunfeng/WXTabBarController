@@ -35,6 +35,17 @@
     self.scrollView.delegate = self;
     
     [self.view insertSubview:self.scrollView belowSubview:self.tabBar];
+    
+    //支持在storyboard中设置子viewControllers
+    
+    //如果在storyboard 拖线 设置UITabbarController的 viewControllers 属性
+    //那么在viewDidLoad 中viewControllers已经设置好了。。
+    //setViewControllers: 把super.viewController 作为我们的backingViewControllers
+    
+    //我添加了一个示例的storyboard 请运行看看效果。。～
+    if(super.viewControllers.count>0){
+        [self setViewControllers:super.viewControllers];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
