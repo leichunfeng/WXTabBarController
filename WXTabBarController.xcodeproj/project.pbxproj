@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EEA54BE1C351C1B00AAF769 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EEA54BD1C351C1B00AAF769 /* Storyboard.storyboard */; };
 		24A8F3E11BFF5E8500B231C6 /* WXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A8F3E01BFF5E8500B231C6 /* WXTabBarController.m */; };
 		24D0FBCA1BFF5B2D00725DD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D0FBC91BFF5B2D00725DD0 /* main.m */; };
 		24D0FBCD1BFF5B2D00725DD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D0FBCC1BFF5B2D00725DD0 /* AppDelegate.m */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EEA54BD1C351C1B00AAF769 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		24A8F3DF1BFF5E8500B231C6 /* WXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTabBarController.h; sourceTree = "<group>"; };
 		24A8F3E01BFF5E8500B231C6 /* WXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXTabBarController.m; sourceTree = "<group>"; };
 		24D0FBC51BFF5B2D00725DD0 /* 微信.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "微信.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +75,7 @@
 		24D0FBC71BFF5B2D00725DD0 /* WXTabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				0EEA54BD1C351C1B00AAF769 /* Storyboard.storyboard */,
 				24A8F3DE1BFF5E5000B231C6 /* Source */,
 				24D0FBCB1BFF5B2D00725DD0 /* AppDelegate.h */,
 				24D0FBCC1BFF5B2D00725DD0 /* AppDelegate.m */,
@@ -122,6 +125,7 @@
 				24D0FBC21BFF5B2D00725DD0 /* Frameworks */,
 				24D0FBC31BFF5B2D00725DD0 /* Resources */,
 				F9094BB4F2CAE135B186400B /* Copy Pods Resources */,
+				642C4669ADBCC6A897FCB280 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,12 +174,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				24D0FBD51BFF5B2D00725DD0 /* Assets.xcassets in Resources */,
+				0EEA54BE1C351C1B00AAF769 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		642C4669ADBCC6A897FCB280 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8D1CFDF08E377586F794DA73 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
