@@ -50,9 +50,9 @@
             UIImageView *tabBarImageView = tabBarButton.subviews[0];
             
             UIImageView *imageView = [[UIImageView alloc] init];
-            imageView.image = self.backingViewControllers[idx].tabBarItem.selectedImage;
             [tabBarButton insertSubview:imageView atIndex:0];
-            
+
+            imageView.image = self.backingViewControllers[idx].tabBarItem.selectedImage;
             imageView.translatesAutoresizingMaskIntoConstraints = NO;
             
             [tabBarButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[tabBarImageView]-width-[imageView(==tabBarImageView)]"
@@ -64,14 +64,14 @@
                                                                                  metrics:@{ @"height": @(-CGRectGetHeight(tabBarImageView.frame)) }
                                                                                    views:NSDictionaryOfVariableBindings(tabBarImageView, imageView)]];
             
-            UILabel *tabBarLabel = tabBarButton.subviews.lastObject;
+            UILabel *tabBarLabel = tabBarButton.subviews[2];
             
             UILabel *label = [[UILabel alloc] init];
+            [tabBarButton insertSubview:label atIndex:1];
+
             label.textColor = self.tabBar.tintColor;
             label.font = tabBarLabel.font;
             label.text = self.backingViewControllers[idx].tabBarItem.title;
-            [tabBarButton insertSubview:label atIndex:1];
-            
             label.translatesAutoresizingMaskIntoConstraints = NO;
             
             [tabBarButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[tabBarLabel]-width-[label(==tabBarLabel)]"
