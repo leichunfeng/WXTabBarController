@@ -183,6 +183,8 @@
             [self tabBarButton:tabBarButton highlighted:YES deltaAlpha:deltaAlpha];
         } else if (idx == index + 1) {
             [self tabBarButton:tabBarButton highlighted:NO deltaAlpha:deltaAlpha];
+        } else {
+            [self tabBarButton:tabBarButton highlighted:NO deltaAlpha:0];
         }
     }];
 }
