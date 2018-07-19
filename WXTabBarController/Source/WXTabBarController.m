@@ -18,14 +18,18 @@
 @property (nonatomic, assign) BOOL initialized;
 
 @end
-
-@implementation WXTabBarController
+static NSString * ObserverKeyPath = @"contentOffset";
+@implementation WXTabBarController {
+    CGFloat _startScrollX;
+    BOOL _isFirstShowNextVC;
+}
 
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _startScrollX = -1.f;
+
     self.delegate = self;
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -35,6 +39,11 @@
     self.scrollView.delegate = self;
     
     [self.view insertSubview:self.scrollView belowSubview:self.tabBar];
+    [self.scrollView addObserver:self forKeyPath:ObserverKeyPath options:NSKeyValueObservingOptionNew context:NULL];
+}
+
+- (void)dealloc {
+    [self.scrollView removeObserver:self forKeyPath:ObserverKeyPath];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -133,14 +142,13 @@
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
-    _backingSelectedIndex = selectedIndex;
-    
+
     CGRect rectToVisible = CGRectMake(CGRectGetWidth(self.view.frame) * selectedIndex, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
-   
+
     self.scrollView.delegate = nil;
     [self.scrollView scrollRectToVisible:rectToVisible animated:NO];
     self.scrollView.delegate = self;
-    
+
     [self.tabBarButtons enumerateObjectsUsingBlock:^(UIView *tabBarButton, NSUInteger idx, BOOL *stop) {
         [self tabBarButton:tabBarButton highlighted:(idx == selectedIndex) deltaAlpha:0];
     }];
@@ -151,8 +159,8 @@
    
     [backingViewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop) {
         [self addChildViewController:viewController];
-        viewController.view.frame = CGRectMake(CGRectGetWidth(self.view.frame) * idx, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
-        [self.scrollView addSubview:viewController.view];
+ //        viewController.view.frame = CGRectMake(CGRectGetWidth(self.view.frame) * idx, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
+//        [self.scrollView addSubview:viewController.view];
     }];
    
     self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame) * backingViewControllers.count, CGRectGetHeight(self.view.frame));
@@ -186,9 +194,15 @@
         }
     }];
 }
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    _startScrollX = scrollView.contentOffset.x;
+    _isFirstShowNextVC = YES;
+}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     _backingSelectedIndex = scrollView.contentOffset.x / CGRectGetWidth(self.view.frame);
+    _startScrollX = -1.f;
+    _isFirstShowNextVC = NO;
 }
 
 #pragma mark - UITabBarControllerDelegate
@@ -218,4 +232,50 @@
     }
 }
 
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:ObserverKeyPath]) {
+        NSNumber *number = change[NSKeyValueChangeNewKey];
+        CGFloat currentX = number.CGPointValue.x;
+        NSInteger index = currentX / CGRectGetWidth(self.view.frame);
+        CGFloat mod = fmod(currentX, CGRectGetWidth(self.view.frame));
+        if (mod != 0) {
+            //  如果mod不为0，说明是滑动scrollView,获取滑动后的下一个索引位置
+            index = currentX < _startScrollX ? index : index + 1;
+        }
+        UIViewController *vc = self.childViewControllers[index];
+        // 如果vc.view没有在self.scrollView.subviews中，添加到self.scrollView
+        if ([self.scrollView.subviews indexOfObject:vc.view] == NSIntegerMax) {
+            CGRect rectToVisible = CGRectMake(CGRectGetWidth(self.view.frame) * index, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
+            vc.view.frame = rectToVisible;
+            // 新增修复点击tabbarItem后的view的生命周期未调用
+            [self.scrollView addSubview:vc.view];
+        }
+        UIViewController *beforeNavVC = nil;
+        if (_backingSelectedIndex != index) {
+            beforeNavVC = (UIViewController *)self.childViewControllers[_backingSelectedIndex];
+        }
+        if (mod == 0.00f) {
+            //  手动设置selectedIndex
+            if (beforeNavVC) {
+                [beforeNavVC viewWillDisappear:YES];
+            }
+            if (_startScrollX == -1.f) {
+                [vc viewWillAppear:YES];
+                [vc viewDidAppear:YES];
+            }
+            if (beforeNavVC) {
+                [beforeNavVC viewDidDisappear:YES];
+            }
+            _backingSelectedIndex = index;
+        }
+        else {
+            if (_backingSelectedIndex != index && _isFirstShowNextVC) {
+                [vc viewWillAppear:YES];
+                [vc viewDidAppear:YES];
+                _isFirstShowNextVC = NO;
+            }
+        }
+    }
+}
 @end
